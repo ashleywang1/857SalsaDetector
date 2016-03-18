@@ -16,7 +16,7 @@ def challenge_distinguisher():
     coin = ord(os.urandom(1)[0]) % 2
     ctxt_blocks = []
     if coin == 0:
-        print "THIS ACTUALLY IS A SALSA"
+        #print "THIS ACTUALLY IS A SALSA"
         #   salsa bytes
         sk = os.urandom(32)
         #   initialization vector (nonce)
@@ -27,7 +27,7 @@ def challenge_distinguisher():
             ctxt_blocks.append(ctxt)
             iv += 1
     else:
-        print "NOT SALSA"
+        #print "NOT SALSA"
         #   random bytes
         for i in range(B):
             ctxt_blocks.append(os.urandom(64))

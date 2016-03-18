@@ -5,14 +5,14 @@ import math
 import numpy as np
 
 #   number of ciphertext blocks
-B = 655536
+B = 512
 ctxt_blocks = []
 #   cryptographically-secure random 32-byte key
 k = os.urandom(32)
 #   initialization vector (nonce)
 iv = 0
 #   number of rounds
-r = 4
+r = 3
 
 # Some constants
 N = 2**8
@@ -47,12 +47,13 @@ def distinguish(ctxt_blocks):
 	    std_dev = math.sqrt(2*(N-1))
 	    thresholdHIGH = (N-1) + 3*std_dev
 	    thresholdLOW = (N-1) - 3*std_dev
+	    #print chi_squared, thresholdHIGH, thresholdLOW
 
 	    if chi_squared > thresholdHIGH or chi_squared < thresholdLOW:
 	    	salsaCount += 1
 	        rightArrays.append(idx)
 
-    print "salsa count" + str(salsaCount)
+    #print "salsa count" + str(salsaCount)
     if salsaCount > 1: # too many false positives if > 0
     	return 0
     return 1
